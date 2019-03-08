@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
 @Entity
@@ -17,10 +17,10 @@ public class Ville {
 	private Long id;
 	@Version
 	private int version;
-	@Column(name="nom", length=100)
+	@Column(name = "nom", length = 100)
 	private String nom;
-	@Transient
-	private List<Aeroport> aeroports = new ArrayList<>();
+	@OneToMany(mappedBy = "ville")
+	private List<AeroportVille> aeroportsVilles = new ArrayList<AeroportVille>();
 
 	public Ville() {
 		super();
@@ -39,6 +39,14 @@ public class Ville {
 		this.id = id;
 	}
 
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
 	public String getNom() {
 		return nom;
 	}
@@ -47,12 +55,12 @@ public class Ville {
 		this.nom = nom;
 	}
 
-	public List<Aeroport> getAeroports() {
-		return aeroports;
+	public List<AeroportVille> getAeroportsVilles() {
+		return aeroportsVilles;
 	}
 
-	public void setAeroports(List<Aeroport> aeroports) {
-		this.aeroports = aeroports;
+	public void setAeroportsVilles(List<AeroportVille> aeroportsVilles) {
+		this.aeroportsVilles = aeroportsVilles;
 	}
 
 }

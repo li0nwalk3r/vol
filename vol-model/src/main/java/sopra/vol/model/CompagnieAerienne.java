@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -19,7 +20,7 @@ public class CompagnieAerienne {
 	private int version;
 	@Column(length = 100)
 	private String nom;
-	@OneToMany(mappedBy = "compagnieAerienne")
+	@OneToMany(mappedBy = "compagnieAerienne", fetch = FetchType.LAZY)
 	private List<CompagnieAerienneVol> vols = new ArrayList<>();
 
 	public CompagnieAerienne() {

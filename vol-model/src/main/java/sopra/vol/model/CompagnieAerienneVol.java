@@ -2,6 +2,7 @@ package sopra.vol.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -15,13 +16,13 @@ public class CompagnieAerienneVol {
 	private Long id;
 	@Version
 	private int version;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn
 	private CompagnieAerienne compagnieAerienne;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn
 	private Vol vol;
-	@Column(length=100)
+	@Column(length = 100)
 	private String numero;
 
 	public CompagnieAerienneVol() {

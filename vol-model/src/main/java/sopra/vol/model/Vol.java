@@ -5,8 +5,11 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,15 +29,17 @@ public class Vol {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateArrivee;
 	private Float tarif;
-	@Transient
+	@OneToMany(mappedBy = "vol", fetch = FetchType.LAZY)
 	private List<Reservation> reservations = new ArrayList<>();
-	@Transient
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn
 	private Aeroport depart;
-	@Transient
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn
 	private Aeroport arrivee;
-	@Transient
+	@OneToMany(mappedBy = "vol", fetch = FetchType.LAZY)
 	private List<Escale> escales = new ArrayList<>();
-	@OneToMany(mappedBy = "vol")
+	@OneToMany(mappedBy = "vol", fetch = FetchType.LAZY)
 	private List<CompagnieAerienneVol> compagnieAeriennes = new ArrayList<>();
 
 	public Vol() {
