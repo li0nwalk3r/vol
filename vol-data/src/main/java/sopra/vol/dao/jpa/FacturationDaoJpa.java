@@ -5,16 +5,18 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Id;
 import javax.persistence.TypedQuery;
 
 import sopra.vol.Application;
-import sopra.vol.dao.IClientDao;
-import sopra.vol.model.Client;
+import sopra.vol.dao.IFacturationDao;
+import sopra.vol.model.Facturation;
 
-public class ClientDaoJpa implements IClientDao{
+public class FacturationDaoJpa implements IFacturationDao {
 
-	public List<Client> findAll() {
-		List<Client> liste = new ArrayList<Client>();
+	@Override
+	public List<Facturation> findAll() {
+		List<Facturation> liste = new ArrayList<Facturation>();
 
 		EntityManager em = null;
 		EntityTransaction tx = null;
@@ -24,7 +26,7 @@ public class ClientDaoJpa implements IClientDao{
 			tx = em.getTransaction();
 			tx.begin();
 
-			TypedQuery<Client> query = em.createQuery("from Client", Client.class);
+			TypedQuery<Facturation> query = em.createQuery("from Facturation", Facturation.class);
 
 			liste = query.getResultList();
 
@@ -44,8 +46,8 @@ public class ClientDaoJpa implements IClientDao{
 	}
 
 	@Override
-	public Client find(Long id) {
-		Client obj = null;
+	public Facturation find(Long id) {
+		Facturation obj = null;
 
 		EntityManager em = null;
 		EntityTransaction tx = null;
@@ -55,7 +57,7 @@ public class ClientDaoJpa implements IClientDao{
 			tx = em.getTransaction();
 			tx.begin();
 
-			obj = em.find(Client.class, id);
+			obj = em.find(Facturation.class, id);
 
 			tx.commit();
 		} catch (Exception e) {
@@ -73,7 +75,7 @@ public class ClientDaoJpa implements IClientDao{
 	}
 
 	@Override
-	public Client save(Client obj) {
+	public Facturation save(Facturation obj) {
 		EntityManager em = null;
 		EntityTransaction tx = null;
 
@@ -100,7 +102,7 @@ public class ClientDaoJpa implements IClientDao{
 	}
 
 	@Override
-	public void delete(Client obj) {
+	public void delete(Facturation obj) {
 		EntityManager em = null;
 		EntityTransaction tx = null;
 
@@ -122,7 +124,7 @@ public class ClientDaoJpa implements IClientDao{
 				em.close();
 			}
 		}
+
 	}
 
 }
-
