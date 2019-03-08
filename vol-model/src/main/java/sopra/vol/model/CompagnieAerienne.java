@@ -3,6 +3,7 @@ package sopra.vol.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,8 +17,9 @@ public class CompagnieAerienne {
 	private Long id;
 	@Version
 	private int version;
+	@Column(length = 100)
 	private String nom;
-	@OneToMany(mappedBy="compagnieAerienne")
+	@OneToMany(mappedBy = "compagnieAerienne")
 	private List<CompagnieAerienneVol> vols = new ArrayList<>();
 
 	public CompagnieAerienne() {

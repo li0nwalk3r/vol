@@ -30,7 +30,7 @@ public class Vol {
 	private Aeroport arrivee;
 	@Transient
 	private List<Escale> escales = new ArrayList<>();
-	@OneToMany(mappedBy="vol")
+	@OneToMany(mappedBy = "vol")
 	private List<CompagnieAerienneVol> compagnieAeriennes = new ArrayList<>();
 
 	public Vol() {
