@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -23,7 +24,7 @@ public class Facturation {
 	private ModeDePaiement modeDePaiement;
 	@Temporal(TemporalType.DATE)
 	private Date dateFacture;
-	@Transient
+	@OneToMany(mappedBy = "facturation")
 	private List<Reservation> reservations = new ArrayList<>();
 
 	public Facturation() {

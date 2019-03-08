@@ -35,9 +35,11 @@ public class Reservation {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "passager_id")
 	private Passager passager;
-	@Transient
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "facturation_id")
 	private Facturation facturation;
-	@Transient
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "vol_id")
 	private Vol vol;
 
 	public Reservation() {
