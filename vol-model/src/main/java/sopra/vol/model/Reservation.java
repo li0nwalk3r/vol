@@ -2,15 +2,42 @@ package sopra.vol.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.persistence.Version;
+@Entity
+@Table(name="reservation")
 public class Reservation {
+	@Id
+	@GeneratedValue
 	private Long id;
+	@Version
+	private int version;
+	@Column(length=50)
 	private String numeroReservation;
 	private boolean annulation;
 	private boolean paiement;
+	@Column(name="date_reservation")
+	@Temporal(TemporalType.DATE)
 	private Date dateReservation;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "client_id")
 	private Client client;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "passager_id")
 	private Passager passager;
+	@Transient
 	private Facturation facturation;
+	@Transient
 	private Vol vol;
 
 	public Reservation() {

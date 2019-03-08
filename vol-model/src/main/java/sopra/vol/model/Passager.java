@@ -4,13 +4,37 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.persistence.Version;
+@Entity
+@Table(name="passager")
 public class Passager {
+	@Id
+	@GeneratedValue
 	private Long id;
+	@Version
+	private int version;
+	@Column(length=100)
 	private String nom;
+	@Column(length=100)
 	private String prenom;
+	@Column(name="date_naissance")
+	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
+	@Column(name="num_passeport", length=100)
 	private String numeroPasseport;
+	@Embedded
 	private Adresse adresse;
+	@OneToMany(mappedBy = "passager")
 	private List<Reservation> reservations = new ArrayList<>();
 
 	public Passager() {
@@ -81,4 +105,13 @@ public class Passager {
 		this.reservations = reservations;
 	}
 
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	
 }
