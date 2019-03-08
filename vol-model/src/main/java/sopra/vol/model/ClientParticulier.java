@@ -1,7 +1,17 @@
 package sopra.vol.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="particulier")
 public class ClientParticulier extends Client {
+	@Column(length=100)
 	private String prenom;
+	@Enumerated(EnumType.STRING)
 	private Civilite civilite;
 
 	public ClientParticulier() {

@@ -1,8 +1,19 @@
 package sopra.vol.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "entreprise")
 public class ClientEntreprise extends Client {
+	@Column(length=50)
 	private String siret;
+	@Enumerated(EnumType.STRING)
 	private StatutJuridique statutJuridique;
+	@Column(length=50)
 	private String numeroTva;
 
 	public ClientEntreprise() {
