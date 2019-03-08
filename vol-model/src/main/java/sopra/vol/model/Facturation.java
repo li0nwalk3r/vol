@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 
@@ -19,6 +21,7 @@ public class Facturation {
 	@Column(length = 100)
 	private String numeroFacturation;
 	private ModeDePaiement modeDePaiement;
+	@Temporal(TemporalType.DATE)
 	private Date dateFacture;
 	@Transient
 	private List<Reservation> reservations = new ArrayList<>();
