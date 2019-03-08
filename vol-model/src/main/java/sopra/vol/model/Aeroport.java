@@ -7,12 +7,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
-@Table(name="aeroport")
+@Table(name = "aeroport")
 
 public class Aeroport {
 	@Id
@@ -20,12 +20,12 @@ public class Aeroport {
 	private Long id;
 	@Version
 	private int version;
-	@Column(name="code", length=100)
+	@Column(name = "code", length = 100)
 	private String code;
-	@Column(name="nom", length=100)
+	@Column(name = "nom", length = 100)
 	private String nom;
-	@Transient
-	private List<Ville> villes = new ArrayList<>();
+	@OneToMany(mappedBy = "aeroport")
+	private List<AeroportVille> aeroportsVilles = new ArrayList<AeroportVille>();
 
 	public Aeroport() {
 		super();
@@ -69,12 +69,12 @@ public class Aeroport {
 		this.nom = nom;
 	}
 
-	public List<Ville> getVilles() {
-		return villes;
+	public List<AeroportVille> getAeroportsVilles() {
+		return aeroportsVilles;
 	}
 
-	public void setVilles(List<Ville> villes) {
-		this.villes = villes;
+	public void setAeroportsVilles(List<AeroportVille> aeroportsVilles) {
+		this.aeroportsVilles = aeroportsVilles;
 	}
 
 }
