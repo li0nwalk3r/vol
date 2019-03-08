@@ -22,7 +22,7 @@ public class Escale {
 	private Long id;
 	@Version
 	private int version;
-	@OneToMany(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn
 	private Vol vol;
 	@ManyToOne(fetch = FetchType.LAZY)
