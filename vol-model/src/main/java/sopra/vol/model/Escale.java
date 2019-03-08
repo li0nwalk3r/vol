@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -21,16 +22,17 @@ public class Escale {
 	private Long id;
 	@Version
 	private int version;
-	@Transient
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn
 	private Vol vol;
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="aeroport_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "aeroport_id")
 	private Aeroport aeroport;
 	@Temporal(TemporalType.DATE)
-	@Column(name="arrival_date")
+	@Column(name = "arrival_date")
 	private Date dateArrivee;
 	@Temporal(TemporalType.DATE)
-	@Column(name="start_date")
+	@Column(name = "start_date")
 	private Date dateDepart;
 
 	public Escale() {
