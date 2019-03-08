@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 
@@ -19,7 +21,9 @@ public class Vol {
 	@Version
 	private int version;
 	private boolean ouvert;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateDepart;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateArrivee;
 	private Float tarif;
 	@Transient

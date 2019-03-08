@@ -1,5 +1,6 @@
 package sopra.vol.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,6 +21,7 @@ public class CompagnieAerienneVol {
 	@ManyToOne
 	@JoinColumn
 	private Vol vol;
+	@Column(length=100)
 	private String numero;
 
 	public CompagnieAerienneVol() {
